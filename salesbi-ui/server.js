@@ -1,0 +1,2 @@
+const http=require('http');const fs=require('fs');const path=require('path');
+http.createServer((req,res)=>{const p=req.url==='/'?'/index.html':req.url;const f=path.join(__dirname,p);fs.readFile(f,(e,d)=>{if(e){res.writeHead(404);return res.end('Not found');}res.end(d);});}).listen(4200,()=>console.log('salesbi-ui at 4200'));
