@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset="utf-8"/><title>salesbi-ui</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><style>body{font-family:Arial;margin:20px}nav a{margin-right:10px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.card{border:1px solid #ddd;padding:10px}</style></head><body>
+<h1>salesbi-ui</h1>
+<nav>
+<a href="#/login">/login</a><a href="#/categories">/categories</a><a href="#/subcategories">/subcategories</a><a href="#/products">/products</a><a href="#/shop">/shop</a><a href="#/cart">/cart</a><a href="#/my-orders">/my-orders</a>
+<a href="#/dashboards/executive">executive</a><a href="#/dashboards/trends">trends</a><a href="#/dashboards/products">products</a><a href="#/dashboards/customers">customers</a><a href="#/dashboards/salespersons">salespersons</a><a href="#/dashboards/shipping">shipping</a>
+</nav><div id='app'></div>
+<script>
+const app=document.getElementById('app');
+function render(){const r=location.hash||'#/login';app.innerHTML=`<h2>${r.replace('#','')}</h2><div class='grid'><div class='card'>Global filter from <input type='date' value='2011-05-01'/> to <input type='date' value='2011-06-30'/></div></div><canvas id='c'></canvas>`;new Chart(document.getElementById('c'),{type:'bar',data:{labels:['A','B'],datasets:[{label:'Sales',data:[10,20]}]}})}
+window.onhashchange=render;render();
+</script></body></html>

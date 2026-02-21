@@ -1,0 +1,8 @@
+namespace NetDwhProject.Core.DwEntities;
+public class Currency{public int CurrencyKey{get;set;}public string CurrencyAlternateKey{get;set;}="";public string CurrencyName{get;set;}="";}
+public class Customer{public int CustomerKey{get;set;}public string? FirstName{get;set;}public string? LastName{get;set;}}
+public class ProductDw{public int ProductKey{get;set;}public string EnglishProductName{get;set;}="";public string? Color{get;set;}public string? Size{get;set;}public string? EnglishProductCategoryName{get;set;}public string? EnglishProductSubcategoryName{get;set;}public decimal StandardCost{get;set;}}
+public class Sales{public int SalesKey{get;set;}public int? SalesOrderID{get;set;}public string? SalesOrderNumber{get;set;}public DateTime? OrderDate{get;set;}public DateTime? DueDate{get;set;}public DateTime? ShipDate{get;set;}public int? CustomerID{get;set;}public int? ProductID{get;set;}public int? TerritoryID{get;set;}public int? SalesPersonID{get;set;}public int? CurrencyRateID{get;set;}public int? ShipMethodID{get;set;}public bool? OnlineOrderFlag{get;set;}public short? OrderQty{get;set;}public decimal UnitPrice{get;set;}public decimal LineTotal{get;set;}}
+public class SalesPerson{public int EmployeeKey{get;set;}public string? SalespersonName{get;set;}public decimal? SalesQuota{get;set;}}
+public class ShipMethod{public int ShipMethodID{get;set;}public string ShipMethodName{get;set;}="";}
+public class Territory{public int SalesTerritoryKey{get;set;}public string SalesTerritoryRegion{get;set;}="";public string SalesTerritoryCountry{get;set;}="";public string SalesTerritoryGroup{get;set;}="";public string? CountryRegionCode{get;set;}}

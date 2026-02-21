@@ -1,0 +1,10 @@
+namespace NetDwhProject.Core.Entities;
+public class User{public int Id{get;set;}public string Username{get;set;}="";public string Email{get;set;}="";public string PasswordHash{get;set;}="";public ICollection<UserRole> UserRoles{get;set;}=new List<UserRole>();}
+public class Role{public int Id{get;set;}public string Name{get;set;}="";public ICollection<UserRole> UserRoles{get;set;}=new List<UserRole>();}
+public class UserRole{public int UserId{get;set;}public int RoleId{get;set;}public User? User{get;set;}public Role? Role{get;set;}}
+public class Category{public int Id{get;set;}public string Name{get;set;}="";public ICollection<SubCategory> SubCategories{get;set;}=new List<SubCategory>();}
+public class SubCategory{public int Id{get;set;}public string Name{get;set;}="";public int CategoryId{get;set;}public Category? Category{get;set;}public ICollection<Product> Products{get;set;}=new List<Product>();}
+public class Product{public int Id{get;set;}public string Name{get;set;}="";public decimal Price{get;set;}public int StockQty{get;set;}public int SubCategoryId{get;set;}public SubCategory? SubCategory{get;set;}public string? Sku{get;set;}public string? Description{get;set;}public bool IsActive{get;set;}=true;}
+public enum OrderStatus:byte{Pending=1,Paid=2,Shipped=3,Cancelled=4}
+public class Order{public int Id{get;set;}public string OrderNumber{get;set;}="";public int UserId{get;set;}public User? User{get;set;}public DateTime OrderDate{get;set;}=DateTime.UtcNow;public OrderStatus Status{get;set;}=OrderStatus.Pending;public decimal SubTotal{get;set;}public decimal Tax{get;set;}public decimal Shipping{get;set;}public decimal Total{get;set;}public string? Notes{get;set;}public ICollection<OrderItem> Items{get;set;}=new List<OrderItem>();}
+public class OrderItem{public int Id{get;set;}public int OrderId{get;set;}public Order? Order{get;set;}public int ProductId{get;set;}public Product? Product{get;set;}public int Quantity{get;set;}public decimal UnitPrice{get;set;}public decimal LineTotal{get;set;}}

@@ -1,0 +1,12 @@
+using NetDwhProject.Core.Entities;
+namespace NetDwhProject.Core.Contracts;
+public record LoginRequest(string Username,string Password);
+public record LoginResponse(string Token,string Username,string[] Roles);
+public record OrderItemRequest(int ProductId,int Quantity);
+public record CreateOrderRequest(List<OrderItemRequest> Items,string? Notes);
+public record DateRange(DateTime From,DateTime To);
+public interface ICategoryRepository{Task<IEnumerable<Category>> GetAllAsync();Task<Category?> GetByIdAsync(int id);Task<Category> AddAsync(Category entity);Task UpdateAsync(Category entity);Task DeleteAsync(int id);} 
+public interface ISubCategoryRepository{Task<IEnumerable<SubCategory>> GetAllAsync(int? categoryId);Task<SubCategory?> GetByIdAsync(int id);Task<SubCategory> AddAsync(SubCategory entity);Task UpdateAsync(SubCategory entity);Task DeleteAsync(int id);} 
+public interface IProductRepository{Task<IEnumerable<object>> GetAllProjectedAsync(int? categoryId,int? subCategoryId);Task<Product?> GetByIdAsync(int id);Task<Product> AddAsync(Product entity);Task UpdateAsync(Product entity);Task DeleteAsync(int id);} 
+public interface IOrderRepository{Task<Order> CreateAsync(int userId,CreateOrderRequest req);Task<IEnumerable<Order>> GetMyAsync(int userId);Task<Order?> GetByIdAsync(int id);Task UpdateStatusAsync(int id,OrderStatus status);} 
+public interface IAnalyticsRepository{Task<DateRange> ResolveDateRangeAsync(DateTime? from,DateTime? to);Task<object> GetExecutiveKpisAsync(DateTime? from,DateTime? to);Task<IEnumerable<object>> GetSalesByMonthAsync(DateTime? from,DateTime? to);Task<IEnumerable<object>> GetSalesByTerritoryGroupAsync(DateTime? from,DateTime? to);Task<IEnumerable<object>> GetTopProductsAsync(DateTime? from,DateTime? to,int top);Task<object> GetOnlineOfflineShareAsync(DateTime? from,DateTime? to);Task<IEnumerable<object>> GetMapSalesAsync(DateTime? from,DateTime? to);Task<IEnumerable<object>> GetOrderLineSnapshotAsync(DateTime? from,DateTime? to,int take);Task<IEnumerable<object>> GetSalesByPeriodAsync(DateTime? from,DateTime? to,string granularity);Task<IEnumerable<object>> GetCumulativeSalesAsync(DateTime? from,DateTime? to,string granularity);Task<object> GetKpisMtdYtdAsync(DateTime? asOf);Task<IEnumerable<object>> GetTopCustomersAsync(DateTime? from,DateTime? to,int top);Task<object> GetCustomerKpisAsync(DateTime? from,DateTime? to);Task<IEnumerable<object>> GetSalesByShipMethodAsync(DateTime? from,DateTime? to);} 
